@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">K30 Notification Light</string>
+    <string name="title_pref_settings">Settings</string>
+    <string name="title_pref_enable_disable_service">Enable or disable service</string>
+    <string name="summary_pref_enable_disable_service">Switch \"K30 Notification Light\"</string>
+    <string name="title_pref_light_on_notification">Light on Notification</string>
+    <string name="title_pref_light_on_charging">Light on Charging</string>
+    <string name="title_pref_test">Test</string>
+    <string name="title_pref_test_light">Test Light</string>
+    <string name="title_pref_instructions">Instructions</string>
+    <string name="summary_pref_instructions">ROOT permission required\nGrant \"Autostart\" permission to the App\nChange \"Battery saver\" to \"No restrictions\" for the App</string>
+
+    <string name="toast_root_access_failed">Couldn\'t get root access</string>
+</resources>

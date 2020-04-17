@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/title_pref_settings">
+
+        <Preference
+            android:key="pref_enable_disable_service"
+            android:summary="@string/summary_pref_enable_disable_service"
+            android:title="@string/title_pref_enable_disable_service" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_light_on_notification"
+            android:title="@string/title_pref_light_on_notification" />
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_light_on_charging"
+            android:title="@string/title_pref_light_on_charging" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_pref_test">
+
+        <Preference
+            android:key="pref_test_light"
+            android:title="@string/title_pref_test_light" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_pref_instructions">
+
+        <Preference
+            android:enabled="false"
+            android:key="pref_instructions"
+            android:summary="@string/summary_pref_instructions" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">K30 通知指示灯</string>
+    <string name="title_pref_settings">设置</string>
+    <string name="title_pref_enable_disable_service">启动或关闭服务</string>
+    <string name="summary_pref_enable_disable_service">切换 \"K30 通知指示灯\"</string>
+    <string name="title_pref_light_on_notification">有通知时亮灯</string>
+    <string name="title_pref_light_on_charging">连接电源时亮灯</string>
+    <string name="title_pref_test">测试</string>
+    <string name="title_pref_test_light">测试指示灯</string>
+    <string name="title_pref_instructions">使用说明</string>
+    <string name="summary_pref_instructions">需要 ROOT 权限\n向本应用授予\"自启动\"权限\n修改本应用的\"省电策略\"为\"无限制\"</string>
+
+    <string name="toast_root_access_failed">无法取得 ROOT 权限</string>
+</resources>
