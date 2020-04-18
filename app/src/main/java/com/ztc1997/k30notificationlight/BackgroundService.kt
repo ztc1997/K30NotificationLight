@@ -83,7 +83,10 @@ class BackgroundService : NotificationListenerService() {
                     isChanging = intent.getIntExtra(
                         BatteryManager.EXTRA_STATUS,
                         -1
-                    ) == BatteryManager.BATTERY_STATUS_CHARGING
+                    ) == BatteryManager.BATTERY_STATUS_CHARGING && intent.getIntExtra(
+                        BatteryManager.EXTRA_LEVEL,
+                        -1
+                    ) != intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
                 }
                 Intent.ACTION_USER_PRESENT -> isScreenOn = true
                 Intent.ACTION_SCREEN_OFF -> if (isScreenOn) {
