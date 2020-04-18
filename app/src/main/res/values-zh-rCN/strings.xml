@@ -8,7 +8,7 @@
     <string name="title_pref_test">测试</string>
     <string name="title_pref_test_light">测试指示灯</string>
     <string name="title_pref_instructions">使用说明</string>
-    <string name="summary_pref_instructions">需要 ROOT 权限\n向本应用授予\"自启动\"权限\n修改本应用的\"省电策略\"为\"无限制\"</string>
+    <string name="summary_pref_instructions">需要 ROOT 权限\n向本应用授予\"自启动\"权限\n修改本应用的\"省电策略\"为\"无限制\"\n在最近任务中锁定本应用</string>
 
     <string name="toast_root_access_failed">无法取得 ROOT 权限</string>
 </resources>
