@@ -81,11 +81,11 @@ class BackgroundService : NotificationListenerService() {
             when (intent.action) {
                 Intent.ACTION_POWER_CONNECTED -> isChanging = true
                 Intent.ACTION_POWER_DISCONNECTED -> isChanging = false
-                Intent.ACTION_USER_PRESENT -> {
-                    isScreenOn = true
+                Intent.ACTION_USER_PRESENT -> isScreenOn = true
+                Intent.ACTION_SCREEN_OFF -> if (isScreenOn) {
+                    isScreenOn = false
                     notifications.clear()
                 }
-                Intent.ACTION_SCREEN_OFF -> isScreenOn = false
 
             }
             updateLight()
