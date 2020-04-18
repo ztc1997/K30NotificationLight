@@ -1,6 +1,7 @@
 package com.ztc1997.k30notificationlight
 
 import android.content.*
+import android.os.BatteryManager
 import android.preference.PreferenceManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
@@ -31,8 +32,7 @@ class BackgroundService : NotificationListenerService() {
         preferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val filter = IntentFilter()
-        filter.addAction(Intent.ACTION_POWER_CONNECTED)
-        filter.addAction(Intent.ACTION_POWER_DISCONNECTED)
+        filter.addAction(Intent.ACTION_BATTERY_CHANGED)
         filter.addAction(Intent.ACTION_USER_PRESENT)
         filter.addAction(Intent.ACTION_SCREEN_OFF)
         this.registerReceiver(receiver, filter)
@@ -79,8 +79,12 @@ class BackgroundService : NotificationListenerService() {
         override fun onReceive(context: Context?, intent: Intent?) {
             if (intent == null) return
             when (intent.action) {
-                Intent.ACTION_POWER_CONNECTED -> isChanging = true
-                Intent.ACTION_POWER_DISCONNECTED -> isChanging = false
+                Intent.ACTION_BATTERY_CHANGED -> {
+                    isChanging = intent.getIntExtra(
+                        BatteryManager.EXTRA_STATUS,
+                        -1
+                    ) == BatteryManager.BATTERY_STATUS_CHARGING
+                }
                 Intent.ACTION_USER_PRESENT -> isScreenOn = true
                 Intent.ACTION_SCREEN_OFF -> if (isScreenOn) {
                     isScreenOn = false
