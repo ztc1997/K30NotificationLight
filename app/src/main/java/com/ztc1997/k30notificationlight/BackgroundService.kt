@@ -16,7 +16,7 @@ class BackgroundService : NotificationListenerService() {
     private val TAG = "BackgroundService"
 
     private val lightUtil = LightUtil()
-    private val notifications = LinkedList<Pair<String, Int>>()
+    private val notifications = NotificationSet()
     private val receiver = ChargingScreenReceiver()
     private var isChanging = false
     private var isScreenOn = true
@@ -70,13 +70,11 @@ class BackgroundService : NotificationListenerService() {
         }
         if (sbn.notification.flags and Notification.FLAG_SHOW_LIGHTS != 0)
             notifications.add(Pair(sbn.packageName, sbn.id))
-        updateLight()
     }
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         super.onNotificationRemoved(sbn)
         notifications.remove(Pair(sbn.packageName, sbn.id))
-        updateLight()
     }
 
     private fun updateLight() {
@@ -116,6 +114,20 @@ class BackgroundService : NotificationListenerService() {
 
             }
             updateLight()
+        }
+    }
+
+    inner class NotificationSet : HashSet<Pair<String, Int>>() {
+        override fun add(element: Pair<String, Int>): Boolean {
+            val ret = super.add(element)
+            if (ret) updateLight()
+            return ret
+        }
+
+        override fun remove(element: Pair<String, Int>): Boolean {
+            val ret = super.remove(element)
+            if (ret) updateLight()
+            return ret
         }
     }
 }
