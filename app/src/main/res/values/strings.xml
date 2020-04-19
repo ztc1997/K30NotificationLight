@@ -11,4 +11,8 @@
     <string name="summary_pref_instructions">ROOT permission required\nGrant \"Autostart\" permission to the App\nChange \"Battery saver\" to \"No restrictions\" for the App\nLock the App in recent apps</string>
 
     <string name="toast_root_access_failed">Couldn\'t get root access</string>
+    <string name="toast_companion_device_association_failed">Companion device association failed</string>
+
+    <string name="dialog_title_companion_device_association">Associate Companion Device</string>
+    <string name="dialog_message_companion_device_association">Need to associate companion device permissions to determine whether notifications should show light, please choose a device at will on the next page</string>
 </resources>

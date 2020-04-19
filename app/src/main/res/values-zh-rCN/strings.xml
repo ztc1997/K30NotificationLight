@@ -11,4 +11,8 @@
     <string name="summary_pref_instructions">需要 ROOT 权限\n向本应用授予\"自启动\"权限\n修改本应用的\"省电策略\"为\"无限制\"\n在最近任务中锁定本应用</string>
 
     <string name="toast_root_access_failed">无法取得 ROOT 权限</string>
+    <string name="toast_companion_device_association_failed">伙伴设备关联失败</string>
+
+    <string name="dialog_title_companion_device_association">关联伙伴设备</string>
+    <string name="dialog_message_companion_device_association">需要关联伙伴设备权限以便判断通知是否需要亮起提示灯，请在下个页面随意选择一个设备</string>
 </resources>

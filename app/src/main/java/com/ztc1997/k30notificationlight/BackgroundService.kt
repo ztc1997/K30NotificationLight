@@ -1,11 +1,14 @@
 package com.ztc1997.k30notificationlight
 
+import android.app.Activity
+import android.app.Notification
+import android.companion.CompanionDeviceManager
 import android.content.*
 import android.os.BatteryManager
+import android.os.Process
 import android.preference.PreferenceManager
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
-import android.util.Log
 import android.widget.Toast
 import java.util.*
 
@@ -18,6 +21,8 @@ class BackgroundService : NotificationListenerService() {
     private var isChanging = false
     private var isScreenOn = true
     private lateinit var preferences: SharedPreferences
+
+    private val companionDeviceManager by lazy { getSystemService(Activity.COMPANION_DEVICE_SERVICE) as CompanionDeviceManager }
 
     override fun onCreate() {
         super.onCreate()
@@ -46,16 +51,31 @@ class BackgroundService : NotificationListenerService() {
 
     override fun onNotificationPosted(sbn: StatusBarNotification) {
         super.onNotificationPosted(sbn)
-        if (sbn.isClearable)
+
+        if (companionDeviceManager.associations.size == 0)
+            Toast.makeText(
+                this,
+                R.string.toast_companion_device_association_failed,
+                Toast.LENGTH_LONG
+            ).show()
+
+        for (chan in getNotificationChannels(sbn.packageName, Process.myUserHandle())) {
+            if (chan.id == sbn.notification.channelId) {
+                if (chan.shouldShowLights()) {
+                    notifications.add(Pair(sbn.packageName, sbn.id))
+                    return
+                }
+                break
+            }
+        }
+        if (sbn.notification.flags and Notification.FLAG_SHOW_LIGHTS != 0)
             notifications.add(Pair(sbn.packageName, sbn.id))
-        Log.d(TAG, "onNotificationPosted ${notifications.size}")
         updateLight()
     }
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         super.onNotificationRemoved(sbn)
         notifications.remove(Pair(sbn.packageName, sbn.id))
-        Log.d(TAG, "onNotificationRemoved ${notifications.size}")
         updateLight()
     }
 
