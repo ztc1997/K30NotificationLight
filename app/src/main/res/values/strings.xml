@@ -9,6 +9,9 @@
     <string name="title_pref_test_light">Test Light</string>
     <string name="title_pref_instructions">Instructions</string>
     <string name="summary_pref_instructions">ROOT permission required\nGrant \"Autostart\" permission to the App\nChange \"Battery saver\" to \"No restrictions\" for the App\nLock the App in recent apps</string>
+    <string name="title_pref_about">About</string>
+    <string name="title_pref_source_code">Source code</string>
+    <string name="title_pref_feedback">Feedback</string>
 
     <string name="toast_root_access_failed">Couldn\'t get root access</string>
     <string name="toast_companion_device_association_failed">Companion device association failed</string>

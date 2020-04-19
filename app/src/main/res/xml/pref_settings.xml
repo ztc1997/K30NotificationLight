@@ -35,4 +35,24 @@
             android:summary="@string/summary_pref_instructions" />
 
     </PreferenceCategory>
+
+    <PreferenceCategory android:title="@string/title_pref_about">
+
+        <Preference
+            android:title="@string/title_pref_source_code"
+            android:summary="https://github.com/ztc1997/K30NotificationLight">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/ztc1997/K30NotificationLight" />
+        </Preference>
+
+        <Preference
+            android:title="@string/title_pref_feedback"
+            android:summary="https://github.com/ztc1997/K30NotificationLight/issues">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/ztc1997/K30NotificationLight/issues" />
+        </Preference>
+
+    </PreferenceCategory>
 </PreferenceScreen>
