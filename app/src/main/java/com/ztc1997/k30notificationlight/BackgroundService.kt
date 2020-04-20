@@ -5,6 +5,7 @@ import android.app.Notification
 import android.companion.CompanionDeviceManager
 import android.content.*
 import android.os.BatteryManager
+import android.os.PowerManager
 import android.os.Process
 import android.preference.PreferenceManager
 import android.service.notification.NotificationListenerService
@@ -15,7 +16,14 @@ import java.util.*
 class BackgroundService : NotificationListenerService() {
     private val TAG = "BackgroundService"
 
-    private val lightUtil = LightUtil()
+    private val lightUtil by lazy {
+        LightUtil(
+            (getSystemService(Context.POWER_SERVICE) as PowerManager).newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK,
+                "k30notificationlight:blinkWakeLockTag"
+            )
+        )
+    }
     private val notifications = NotificationSet()
     private val receiver = ChargingScreenReceiver()
     private var isChanging = false
@@ -78,19 +86,25 @@ class BackgroundService : NotificationListenerService() {
     }
 
     private fun updateLight() {
-        if (isChanging && preferences.getBoolean(PREF_LIGHT_ON_CHARGING, true)) {
-            lightUtil.light = true
-            return
-        }
         if (!isScreenOn && notifications.size > 0 && preferences.getBoolean(
                 PREF_LIGHT_ON_NOTIFICATION,
                 true
             )
         ) {
-            lightUtil.light = true
+            if (preferences.getBoolean(PREF_BLINK_ON_NOTIFICATION, false)) {
+                lightUtil.blink = true
+            } else {
+                lightUtil.blink = false
+                lightUtil.setLightAnimated(LIGHT_MAX)
+            }
             return
         }
-        lightUtil.light = false
+        lightUtil.blink = false
+        if (isChanging && preferences.getBoolean(PREF_LIGHT_ON_CHARGING, true)) {
+            lightUtil.setLightAnimated(LIGHT_MAX)
+            return
+        }
+        lightUtil.setLightAnimated(LIGHT_MIN)
     }
 
     inner class ChargingScreenReceiver : BroadcastReceiver() {

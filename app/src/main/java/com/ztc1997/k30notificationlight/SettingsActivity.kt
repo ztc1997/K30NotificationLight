@@ -7,20 +7,25 @@ import android.companion.CompanionDeviceManager
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentSender
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
+import android.os.PowerManager
 import android.preference.Preference
 import android.preference.PreferenceFragment
+import android.provider.Settings
 import android.widget.Toast
 
 
 const val PREF_ENABLE_DISABLE_SERVICE = "pref_enable_disable_service"
 const val PREF_LIGHT_ON_NOTIFICATION = "pref_light_on_notification"
+const val PREF_BLINK_ON_NOTIFICATION = "pref_blink_on_notification"
 const val PREF_LIGHT_ON_CHARGING = "pref_light_on_charging"
 const val PREF_TEST_LIGHT = "pref_test_light"
 
 class SettingsActivity : Activity() {
     private val companionDeviceManager by lazy { getSystemService(COMPANION_DEVICE_SERVICE) as CompanionDeviceManager }
+    private val powerManager by lazy { getSystemService(POWER_SERVICE) as PowerManager }
     private val handler by lazy { Handler() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,10 +60,16 @@ class SettingsActivity : Activity() {
                     }, handler)
                 }.show()
         }
+
+        if (!powerManager.isIgnoringBatteryOptimizations(BuildConfig.APPLICATION_ID)) {
+            val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+            intent.data = Uri.parse("package:" + BuildConfig.APPLICATION_ID)
+            startActivity(intent)
+        }
     }
 
     class SettingsFragment : PreferenceFragment() {
-        private val lightUtil = LightUtil()
+        private val lightUtil by lazy { LightUtil(null) }
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -85,8 +96,8 @@ class SettingsActivity : Activity() {
 
             findPreference(PREF_TEST_LIGHT).onPreferenceClickListener =
                 Preference.OnPreferenceClickListener {
-                    lightUtil.light = true
-                    Handler().postDelayed({ lightUtil.light = false }, 1000)
+                    lightUtil.setLightAnimated(LIGHT_MAX)
+                    Handler().postDelayed({ lightUtil.setLightAnimated(LIGHT_MIN) }, 1000)
                     true
                 }
         }

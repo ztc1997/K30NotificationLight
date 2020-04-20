@@ -14,6 +14,12 @@
             android:title="@string/title_pref_light_on_notification" />
 
         <CheckBoxPreference
+            android:dependency="pref_light_on_notification"
+            android:key="pref_blink_on_notification"
+            android:summary="@string/summary_pref_blink_on_notification"
+            android:title="@string/title_pref_blink_on_notification" />
+
+        <CheckBoxPreference
             android:defaultValue="true"
             android:key="pref_light_on_charging"
             android:title="@string/title_pref_light_on_charging" />
@@ -39,16 +45,16 @@
     <PreferenceCategory android:title="@string/title_pref_about">
 
         <Preference
-            android:title="@string/title_pref_source_code"
-            android:summary="https://github.com/ztc1997/K30NotificationLight">
+            android:summary="https://github.com/ztc1997/K30NotificationLight"
+            android:title="@string/title_pref_source_code">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/ztc1997/K30NotificationLight" />
         </Preference>
 
         <Preference
-            android:title="@string/title_pref_feedback"
-            android:summary="https://github.com/ztc1997/K30NotificationLight/issues">
+            android:summary="https://github.com/ztc1997/K30NotificationLight/issues"
+            android:title="@string/title_pref_feedback">
             <intent
                 android:action="android.intent.action.VIEW"
                 android:data="https://github.com/ztc1997/K30NotificationLight/issues" />
