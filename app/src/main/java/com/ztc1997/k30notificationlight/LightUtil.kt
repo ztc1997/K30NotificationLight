@@ -80,7 +80,7 @@ class LightUtil(private val wakeLock: PowerManager.WakeLock?) {
     }
 
     fun closeShell() {
-        if (handler.hasCallbacks(blinkRunnable)) handler.removeCallbacks(blinkRunnable)
+        blink = false
         lastValueAnimator?.cancel()
         light = LIGHT_MIN
         rootSession?.closeWhenIdle()
