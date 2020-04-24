@@ -60,6 +60,8 @@ class BackgroundService : NotificationListenerService() {
     override fun onNotificationPosted(sbn: StatusBarNotification) {
         super.onNotificationPosted(sbn)
 
+        if (isScreenOn) return
+
         if (companionDeviceManager.associations.size > 0)
             for (chan in getNotificationChannels(sbn.packageName, Process.myUserHandle())) {
                 if (chan.id == sbn.notification.channelId) {
@@ -77,6 +79,7 @@ class BackgroundService : NotificationListenerService() {
 
     override fun onNotificationRemoved(sbn: StatusBarNotification) {
         super.onNotificationRemoved(sbn)
+        if (isScreenOn) return
         notifications.remove(Pair(sbn.packageName, sbn.id))
     }
 
