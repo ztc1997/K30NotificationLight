@@ -20,5 +20,5 @@
     <string name="toast_companion_device_association_failed">Companion device association failed</string>
 
     <string name="dialog_title_companion_device_association">Associate Companion Device</string>
-    <string name="dialog_message_companion_device_association">Need to associate companion device permissions to determine whether notifications should show light, please choose any device on the next page</string>
+    <string name="dialog_message_companion_device_association">In the next dialog, please link this App with any device. This is required to be able to access notifications colors. It does not seem to matter which device you choose.\n\nPlease turn on Wi-Fi and Bluetooth before continuing; you can turn them off again afterwards.\n\nIf no popup comes up, try making sure "Nearby device scanning" is enabled, and pairing with a Bluetooth device.</string>
 </resources>

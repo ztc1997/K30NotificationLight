@@ -20,5 +20,5 @@
     <string name="toast_companion_device_association_failed">伙伴设备关联失败</string>
 
     <string name="dialog_title_companion_device_association">关联伙伴设备</string>
-    <string name="dialog_message_companion_device_association">需要关联伙伴设备权限以便判断通知是否需要亮起提示灯，请在下个页面随意选择一个设备</string>
+    <string name="dialog_message_companion_device_association">在下一个对话框，请连接本应用到任意设备（选择哪一个设备并不重要），这样才能根据应用图标存取通知灯的颜色。\n\n进行下一步之前请打开 Wi-Fi 和 蓝牙，在设置完成之后您可以关闭它们。\n\n如果没有窗口弹出, 请确认"扫描附近的设备"是否已经开启，并与蓝牙设备配对。</string>
 </resources>
