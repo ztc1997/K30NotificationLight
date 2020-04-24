@@ -60,22 +60,17 @@ class BackgroundService : NotificationListenerService() {
     override fun onNotificationPosted(sbn: StatusBarNotification) {
         super.onNotificationPosted(sbn)
 
-        if (companionDeviceManager.associations.size == 0)
-            Toast.makeText(
-                this,
-                R.string.toast_companion_device_association_failed,
-                Toast.LENGTH_LONG
-            ).show()
-
-        for (chan in getNotificationChannels(sbn.packageName, Process.myUserHandle())) {
-            if (chan.id == sbn.notification.channelId) {
-                if (chan.shouldShowLights()) {
-                    notifications.add(Pair(sbn.packageName, sbn.id))
-                    return
+        if (companionDeviceManager.associations.size > 0)
+            for (chan in getNotificationChannels(sbn.packageName, Process.myUserHandle())) {
+                if (chan.id == sbn.notification.channelId) {
+                    if (chan.shouldShowLights()) {
+                        notifications.add(Pair(sbn.packageName, sbn.id))
+                        return
+                    }
+                    break
                 }
-                break
             }
-        }
+
         if (sbn.notification.flags and Notification.FLAG_SHOW_LIGHTS != 0)
             notifications.add(Pair(sbn.packageName, sbn.id))
     }
