@@ -6,9 +6,10 @@
     <string name="title_pref_light_on_notification">有通知时亮灯</string>
     <string name="title_pref_blink_on_notification">有通知时闪烁</string>
     <string name="summary_pref_blink_on_notification">可能增加电池消耗</string>
-    <string name="title_pref_light_on_charging">连接电源时亮灯</string>
+    <string name="title_pref_light_on_charging">充电时亮灯</string>
     <string name="title_pref_test">测试</string>
     <string name="title_pref_test_light">测试指示灯</string>
+    <string name="summary_pref_test_light">测试指示灯能否工作</string>
     <string name="title_pref_instructions">使用说明</string>
     <string name="summary_pref_instructions">需要 ROOT 权限\n向本应用授予\"自启动\"权限\n修改本应用的\"省电策略\"为\"无限制\"\n在最近任务中锁定本应用</string>
     <string name="title_pref_about">关于</string>

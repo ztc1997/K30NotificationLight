@@ -9,6 +9,7 @@
     <string name="title_pref_light_on_charging">Light on Charging</string>
     <string name="title_pref_test">Test</string>
     <string name="title_pref_test_light">Test Light</string>
+    <string name="summary_pref_test_light">Test if the light works</string>
     <string name="title_pref_instructions">Instructions</string>
     <string name="summary_pref_instructions">ROOT permission required\nGrant \"Autostart\" permission to the App\nChange \"Battery saver\" to \"No restrictions\" for the App\nLock the App in recent apps</string>
     <string name="title_pref_about">About</string>
@@ -19,5 +20,5 @@
     <string name="toast_companion_device_association_failed">Companion device association failed</string>
 
     <string name="dialog_title_companion_device_association">Associate Companion Device</string>
-    <string name="dialog_message_companion_device_association">Need to associate companion device permissions to determine whether notifications should show light, please choose a device at will on the next page</string>
+    <string name="dialog_message_companion_device_association">Need to associate companion device permissions to determine whether notifications should show light, please choose any device on the next page</string>
 </resources>

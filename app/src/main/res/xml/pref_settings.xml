@@ -29,7 +29,8 @@
 
         <Preference
             android:key="pref_test_light"
-            android:title="@string/title_pref_test_light" />
+            android:title="@string/title_pref_test_light"
+            android:summary="@string/summary_pref_test_light" />
 
     </PreferenceCategory>
 
