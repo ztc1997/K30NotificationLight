@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.PowerManager
+import android.preference.ListPreference
 import android.preference.Preference
 import android.preference.PreferenceFragment
 import android.provider.Settings
@@ -18,10 +19,15 @@ import android.widget.Toast
 
 
 const val PREF_ENABLE_DISABLE_SERVICE = "pref_enable_disable_service"
-const val PREF_LIGHT_ON_NOTIFICATION = "pref_light_on_notification"
-const val PREF_BLINK_ON_NOTIFICATION = "pref_blink_on_notification"
+const val PREF_LIGHT_ON_NOTIFICATION_LIST = "pref_light_on_notification_list"
 const val PREF_LIGHT_ON_CHARGING = "pref_light_on_charging"
 const val PREF_TEST_LIGHT = "pref_test_light"
+
+
+const val VALUE_LIGHT_ON_NOTIFICATION_LIST_DISABLED = "disabled"
+const val VALUE_LIGHT_ON_NOTIFICATION_LIST_ALWAYS_ON = "always_on"
+const val VALUE_LIGHT_ON_NOTIFICATION_LIST_BLINK = "blink"
+const val VALUE_LIGHT_ON_NOTIFICATION_LIST_ALWAYS_ON_BLINK_ON_CHARGE = "always_on_blink_on_charge"
 
 class SettingsActivity : Activity() {
     private val companionDeviceManager by lazy { getSystemService(COMPANION_DEVICE_SERVICE) as CompanionDeviceManager }
@@ -70,6 +76,11 @@ class SettingsActivity : Activity() {
 
     class SettingsFragment : PreferenceFragment() {
         private val lightUtil by lazy { LightUtil(null) }
+        private val prefLightOnNotificationList by lazy {
+            findPreference(
+                PREF_LIGHT_ON_NOTIFICATION_LIST
+            ) as ListPreference
+        }
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -100,6 +111,21 @@ class SettingsActivity : Activity() {
                     Handler().postDelayed({ lightUtil.setLightAnimated(LIGHT_MIN) }, 1000)
                     true
                 }
+
+            prefLightOnNotificationList.setOnPreferenceChangeListener { preference, newValue ->
+                if (preference is ListPreference && newValue is String) {
+                    val index = preference.findIndexOfValue(newValue)
+
+                    preference.summary = if (index >= 0)
+                        preference.entries[index] else null
+                }
+                true
+            }
+        }
+
+        override fun onResume() {
+            super.onResume()
+            prefLightOnNotificationList.summary = prefLightOnNotificationList.entry
         }
 
         override fun onDestroy() {

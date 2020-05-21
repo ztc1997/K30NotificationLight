@@ -8,16 +8,12 @@
             android:summary="@string/summary_pref_enable_disable_service"
             android:title="@string/title_pref_enable_disable_service" />
 
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="pref_light_on_notification"
-            android:title="@string/title_pref_light_on_notification" />
-
-        <CheckBoxPreference
-            android:dependency="pref_light_on_notification"
-            android:key="pref_blink_on_notification"
-            android:summary="@string/summary_pref_blink_on_notification"
-            android:title="@string/title_pref_blink_on_notification" />
+        <ListPreference
+            android:defaultValue="disabled"
+            android:entries="@array/entries_pref_light_on_notification_list"
+            android:entryValues="@array/values_pref_light_on_notification_list"
+            android:key="pref_light_on_notification_list"
+            android:title="@string/title_pref_light_on_notification_list" />
 
         <CheckBoxPreference
             android:defaultValue="true"
@@ -29,8 +25,8 @@
 
         <Preference
             android:key="pref_test_light"
-            android:title="@string/title_pref_test_light"
-            android:summary="@string/summary_pref_test_light" />
+            android:summary="@string/summary_pref_test_light"
+            android:title="@string/title_pref_test_light" />
 
     </PreferenceCategory>
 

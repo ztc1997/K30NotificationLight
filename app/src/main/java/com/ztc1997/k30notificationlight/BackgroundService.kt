@@ -84,18 +84,30 @@ class BackgroundService : NotificationListenerService() {
     }
 
     private fun updateLight() {
-        if (!isScreenOn && notifications.size > 0 && preferences.getBoolean(
-                PREF_LIGHT_ON_NOTIFICATION,
-                true
-            )
-        ) {
-            if (preferences.getBoolean(PREF_BLINK_ON_NOTIFICATION, false)) {
-                lightUtil.blink = true
-            } else {
-                lightUtil.blink = false
-                lightUtil.setLightAnimated(LIGHT_MAX)
+        if (!isScreenOn && notifications.size > 0) {
+            when (preferences.getString(
+                PREF_LIGHT_ON_NOTIFICATION_LIST,
+                VALUE_LIGHT_ON_NOTIFICATION_LIST_DISABLED
+            )) {
+                VALUE_LIGHT_ON_NOTIFICATION_LIST_ALWAYS_ON -> {
+                    lightUtil.blink = false
+                    lightUtil.setLightAnimated(LIGHT_MAX)
+                    return
+                }
+                VALUE_LIGHT_ON_NOTIFICATION_LIST_BLINK -> {
+                    lightUtil.blink = true
+                    return
+                }
+                VALUE_LIGHT_ON_NOTIFICATION_LIST_ALWAYS_ON_BLINK_ON_CHARGE -> {
+                    if (isChanging) {
+                        lightUtil.blink = true
+                    } else {
+                        lightUtil.blink = false
+                        lightUtil.setLightAnimated(LIGHT_MAX)
+                    }
+                    return
+                }
             }
-            return
         }
         lightUtil.blink = false
         if (isChanging && preferences.getBoolean(PREF_LIGHT_ON_CHARGING, true)) {

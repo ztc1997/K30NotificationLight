@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="entries_pref_light_on_notification_list">
+        <item>@string/entries_pref_light_on_notification_list_disable</item>
+        <item>@string/entries_pref_light_on_notification_list_always_on</item>
+        <item>@string/entries_pref_light_on_notification_list_blink</item>
+        <item>@string/entries_pref_light_on_notification_list_blink_always_on_blink_on_charge</item>
+    </string-array>
+
+    <string-array name="values_pref_light_on_notification_list" translatable="false">
+        <item>disabled</item>
+        <item>always_on</item>
+        <item>blink</item>
+        <item>always_on_blink_on_charge</item>
+    </string-array>
+</resources>

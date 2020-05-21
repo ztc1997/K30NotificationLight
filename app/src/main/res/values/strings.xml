@@ -3,9 +3,7 @@
     <string name="title_pref_settings">Settings</string>
     <string name="title_pref_enable_disable_service">Enable or disable service</string>
     <string name="summary_pref_enable_disable_service">Switch \"K30 Notification Light\"</string>
-    <string name="title_pref_light_on_notification">Light on Notification</string>
-    <string name="title_pref_blink_on_notification">Blink on Notification</string>
-    <string name="summary_pref_blink_on_notification">May increase battery consumption</string>
+    <string name="title_pref_light_on_notification_list">Light on Notification</string>
     <string name="title_pref_light_on_charging">Light on Charging</string>
     <string name="title_pref_test">Test</string>
     <string name="title_pref_test_light">Test Light</string>
@@ -21,4 +19,9 @@
 
     <string name="dialog_title_companion_device_association">Associate Companion Device</string>
     <string name="dialog_message_companion_device_association">In the next dialog, please link this App with any device. This is required to be able to access notifications colors. It does not seem to matter which device you choose.\n\nPlease turn on Wi-Fi and Bluetooth before continuing; you can turn them off again afterwards.\n\nIf no popup comes up, try making sure "Nearby device scanning" is enabled, and pairing with a Bluetooth device.</string>
+
+    <string name="entries_pref_light_on_notification_list_disable">Disabled</string>
+    <string name="entries_pref_light_on_notification_list_always_on">Always on</string>
+    <string name="entries_pref_light_on_notification_list_blink">Blink(May increase battery consumption)</string>
+    <string name="entries_pref_light_on_notification_list_blink_always_on_blink_on_charge">Always on, blink on charge</string>
 </resources>

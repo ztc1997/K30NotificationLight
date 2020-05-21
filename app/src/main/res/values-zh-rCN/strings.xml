@@ -3,9 +3,7 @@
     <string name="title_pref_settings">设置</string>
     <string name="title_pref_enable_disable_service">启动或关闭服务</string>
     <string name="summary_pref_enable_disable_service">切换 \"K30 通知指示灯\"</string>
-    <string name="title_pref_light_on_notification">有通知时亮灯</string>
-    <string name="title_pref_blink_on_notification">有通知时闪烁</string>
-    <string name="summary_pref_blink_on_notification">可能增加电池消耗</string>
+    <string name="title_pref_light_on_notification_list">有通知时亮灯</string>
     <string name="title_pref_light_on_charging">充电时亮灯</string>
     <string name="title_pref_test">测试</string>
     <string name="title_pref_test_light">测试指示灯</string>
@@ -21,4 +19,9 @@
 
     <string name="dialog_title_companion_device_association">关联伙伴设备</string>
     <string name="dialog_message_companion_device_association">在下一个对话框，请连接本应用到任意设备（选择哪一个设备并不重要），这样才能根据应用图标存取通知灯的颜色。\n\n进行下一步之前请打开 Wi-Fi 和 蓝牙，在设置完成之后您可以关闭它们。\n\n如果没有窗口弹出, 请确认"扫描附近的设备"是否已经开启，并与蓝牙设备配对。</string>
+
+    <string name="entries_pref_light_on_notification_list_disable">关闭</string>
+    <string name="entries_pref_light_on_notification_list_always_on">长亮</string>
+    <string name="entries_pref_light_on_notification_list_blink">闪烁（可能增加电池消耗）</string>
+    <string name="entries_pref_light_on_notification_list_blink_always_on_blink_on_charge">长亮，充电时闪烁</string>
 </resources>
